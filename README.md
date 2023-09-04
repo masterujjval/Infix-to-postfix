@@ -11,3 +11,6 @@ To run the program:
 - Run the postfix.cpp in vs code
 - type ```./postfix``` to run the program in the terminal
 
+**NOTE**: The use of brackets have not been added yet.
+
+**Accepting any kind of contribution.**
