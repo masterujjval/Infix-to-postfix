@@ -53,6 +53,7 @@ void postfix(string s)
         if (count==0 && (top->link==NULL && (s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*' || s[i]=='(' || s[i]=='^')))
         {
             input(s[i]);
+            count=1;
             
         }
 
@@ -66,6 +67,10 @@ void postfix(string s)
         {
             while (top!= NULL)
             {
+                if(top->data=='('){
+                    break;
+                }
+
                 res+=top->data;
                 top = top->link;
             }
@@ -83,6 +88,10 @@ void postfix(string s)
         {
             while (top != NULL)
             {
+                if(top->data=='('){
+                    break;
+                }
+
                  res+=top->data;
                 top = top->link;
             }
@@ -103,6 +112,9 @@ void postfix(string s)
             while (top != NULL)
             {    
                 if(top->data=='-' || top->data=='+')break;
+                  if(top->data=='('){
+                    break;
+                }
                  res+=top->data;
                 top = top->link;
             }
@@ -113,7 +125,13 @@ void postfix(string s)
               else if ((top->data == '*' && (s[i] == '+' || s[i]=='-' )))
         {
             while (top != NULL)
-            {    
+            {   
+                //adding bracket condition  
+
+                  if(top->data=='('){
+                // we have to stop the loop here till open bracket
+                    break;
+                }
                 
                  res+=top->data;
                 top = top->link;
@@ -137,6 +155,10 @@ void postfix(string s)
             {    
                 if(top->data=='-' || top->data=='+')break;
 
+                 if(top->data=='('){
+                // we have to stop the loop here till open bracket
+                    break;
+                }
                  res+=top->data;
                 top = top->link;
             }
@@ -149,6 +171,10 @@ void postfix(string s)
         {
             while (top != NULL)
             {    
+                 if(top->data=='('){
+                // we have to stop the loop here till open bracket
+                    break;
+                }
                  res+=top->data;
                 top = top->link;
             }
@@ -159,6 +185,7 @@ void postfix(string s)
 
         else if(top->data=='(' && (s[i]=='+' || s[i]=='-' || s[i]=='*' || s[i]=='/' || s[i]=='(' || s[i]=='^' ) ){
             input(s[i]);
+            
         }
 
 
@@ -167,11 +194,13 @@ void postfix(string s)
 
                 if(top->data=='('){
                     top=top->link;
+                    
                     break;
                 }
 
                 res+=top->data;
                 top=top->link;
+                count=0;
             }
             
 
@@ -182,6 +211,7 @@ void postfix(string s)
 
            else if(top->data=='^' && s[i]=='(' ){
             input(s[i]);
+            
         }
 
 
@@ -224,11 +254,7 @@ void postfix(string s)
             }
             count=0;
     
-        for(int i=0;i<res.length();i++){
-
-            if(res[i]=='(')res.erase(res.begin()+i);
-
-        }
+       
 
 
 }
