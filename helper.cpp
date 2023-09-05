@@ -224,5 +224,11 @@ void postfix(string s)
             }
             count=0;
     
+        for(int i=0;i<res.length();i++){
+
+            if(res[i]=='(')res.erase(res.begin()+i);
+
+        }
+
 
 }
