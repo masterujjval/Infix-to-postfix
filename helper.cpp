@@ -50,14 +50,14 @@ void postfix(string s)
     for (int i = 0; i < s.length(); i++)
     {
 
-        if (count==0 && (top->link==NULL && (s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*')))
+        if (count==0 && (top->link==NULL && (s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*' || s[i]=='(' || s[i]=='^')))
         {
             input(s[i]);
             
         }
 
         // STARTING FROM THE + OPERATOR
-        else if ( top->data == '+' && (s[i] == '*' || s[i]=='/') )
+        else if ( top->data == '+' && (s[i] == '*' || s[i]=='/' || s[i]=='(' || s[i]=='^' ) )
         {
             input(s[i]);
         }
@@ -74,7 +74,7 @@ void postfix(string s)
         }
 
         // FOR - OPERATOR
-        else if ((top->data == '-' && s[i] == '/')  || (top->data == '-' && s[i] == '*'))
+        else if ((top->data == '-' && s[i] == '/')  || (top->data == '-' && s[i] == '*') || (top->data=='-' && s[i]=='(' ) || (top->data=='-' && s[i]=='^' ))
         {
             input(s[i]);
         }
@@ -93,7 +93,12 @@ void postfix(string s)
 
         // FOR * OPERATOR
 
-        else if ((top->data == '*' && (s[i] == '/' || s[i]=='*' )))
+        else if(top->data=='*' && (s[i]=='(' || s[i]=='^' ) ){
+            input(s[i]);
+        }
+
+
+        else if ((top->data == '*' && (s[i] == '/' || s[i]=='*'  )))
         {
             while (top != NULL)
             {    
@@ -120,11 +125,18 @@ void postfix(string s)
 
 
         //FOR / OPERATOR
+
+             else if(top->data=='/' && (s[i]=='(' || s[i]=='^' )){
+            input(s[i]);
+        }
+
+
             else if ((top->data == '/' && (s[i] == '/' || s[i]=='*' )))
         {
             while (top != NULL)
             {    
                 if(top->data=='-' || top->data=='+')break;
+
                  res+=top->data;
                 top = top->link;
             }
@@ -143,6 +155,61 @@ void postfix(string s)
             input(s[i]);
             count=1;
         }
+        //For Bracket ()
+
+        else if(top->data=='(' && (s[i]=='+' || s[i]=='-' || s[i]=='*' || s[i]=='/' || s[i]=='(' || s[i]=='^' ) ){
+            input(s[i]);
+        }
+
+
+        else if(s[i]==')'){
+            while(top!=NULL){
+
+                if(top->data=='('){
+                    top=top->link;
+                    break;
+                }
+
+                res+=top->data;
+                top=top->link;
+            }
+            
+
+            count=0;
+        }
+
+        //for Power ^
+
+           else if(top->data=='^' && s[i]=='(' ){
+            input(s[i]);
+        }
+
+
+            else if ((top->data == '^' && (s[i] == '/' || s[i]=='*' || s[i]=='^')))
+        {
+            while (top != NULL)
+            {    
+                if(top->data=='-' || top->data=='+' || top->data=='/' || top->data=='*' )break;
+
+                 res+=top->data;
+                top = top->link;
+            }
+            input(s[i]);
+            count=1;
+        }
+
+
+            else if ((top->data == '^' && (s[i] == '-' || s[i]=='+' )))
+        {
+            while (top != NULL)
+            {    
+                 res+=top->data;
+                top = top->link;
+            }
+            input(s[i]);
+            count=1;
+        }
+
 
         else
         {
