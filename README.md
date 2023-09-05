@@ -11,6 +11,8 @@ To run the program:
 - Run the postfix.cpp in vs code
 - type ```./postfix``` to run the program in the terminal
 
-**NOTE**: The use of brackets have not been added yet.
+
+
+![Screenshot from 2023-09-05 10-11-23](https://github.com/masterujjval/Infix-to-postfix/assets/64778409/554bb3c7-1bd0-4e5a-b25a-233cb0a4e34a)
 
 **Accepting any kind of contribution.**
