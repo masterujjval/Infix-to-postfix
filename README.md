@@ -2,14 +2,17 @@
 
 Program to convert **infix expression** to **postfix expression**.  
 
-**Stack** data structure have been used for the conversion of the the infix expression. for e.g ```A+B-C``` to ```AB+C-```.
+**Stack** data structure has been used for the conversion of the the infix expression. for e.g ```A+B-C``` to ```AB+C-```.
 It will convert convert expression as given in the above example.
+
+In this program instead of using "Stack" library which is already available for C++, direct use of stack data structure has been used which also explains the workings of stack.
+Any infix expression can be converted into a postfix expression using this conversion tool.
 
 To run the program:
 - Fork and clone the repo.
-- Make sure gcc is install in your system to run the code using terminal
+- Make sure gcc is installed in your system to run the code using terminal
 - Run the postfix.cpp in vs code
-- type ```./postfix``` to run the program in the terminal
+- Type ```./postfix``` to run the program in the terminal
 
 
 
